@@ -1,0 +1,190 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>JM Test</title>
+    <link href="css/form.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="js/validation.js"></script>
+</head>
+
+<body class="zf-backgroundBg">
+    <!-- Change or deletion of the name attributes in the input tag will lead to empty values on record submission-->
+    <div class="zf-templateWidth">
+        <form
+            action="javascript:void(0);"
+            name='form' method='POST' onsubmit='submitForm();'
+            accept-charset='UTF-8' enctype='multipart/form-data' id='form'><input type="hidden" name="zf_referrer_name"
+                value=""><!-- To Track referrals , place the referrer name within the " " in the above hidden input field -->
+            <input type="hidden" name="zf_redirect_url"
+                value=""><!-- To redirect to a specific page after record submission , place the respective url within the " " in the above hidden input field -->
+            <input type="hidden" name="zc_gad"
+                value=""><!-- If GCLID is enabled in Zoho CRM Integration, click details of AdWords Ads will be pushed to Zoho CRM -->
+            <div class="zf-templateWrapper">
+                <div id="firstCard">
+                    <!---------template Header Starts Here---------->
+                    <!-- <ul class="zf-tempHeadBdr">
+                    <li class="zf-tempHeadContBdr">
+                        <h2 class="zf-frmTitle"><em>JM Test</em></h2>
+                        <p class="zf-frmDesc"></p>
+                        <div class="zf-clearBoth"></div>
+                    </li>
+                </ul> -->
+                    <!---------template Header Ends Here---------->
+                    <!---------template Container Starts Here---------->
+                    <div class="zf-subContWrap zf-topAlign">
+                        <div class="card-heading">
+                            <h2>Easter Savings: Get 30% off Installation til 3/31</h2>
+                            <p>Plus get these bonus's absolutely free when you book now</p>
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                <li>Free Kitchen Design Consultation ($299 value)</li>
+                                <li>2024 Kitchen design trends guide ($49 value)</li>
+                                <li>Ultimate dream kitchens lookbook ($49 value)</li>
+                            </ul>
+                        </div>
+                        <ul>
+                            <!---------Single Line Starts Here---------->
+                            <li class="zf-tempFrmWrapper zf-medium">
+                                <label class="zf-labelName">
+                                    Enter your zip to see if you qualify
+                                    <em class="zf-important">*</em>
+                                </label>
+                                <div class="zf-tempContDiv">
+                                    <span>
+                                        <input class="inputStyle" type="text" name="zipCode" checktype="c1" value=""
+                                            maxlength="255" fieldType=1 placeholder="Zip&#x20;Code"/>
+                                    </span>
+                                    <p id="zipCode_error" class="zf-errorMessage" style="display:none;">Invalid value
+                                    </p>
+                                </div>
+                                <div class="zf-clearBoth"></div>
+                            </li>
+                            <!---------Single Line Ends Here---------->
+                        </ul>
+                    </div>
+                    <ul>
+                        <li class="zf-fmFooter"><button class="zf-submitColor buttonStyle" type="button" onclick="showSecondCard()">Get Started</button></li>
+                    </ul>
+                    <!-- <div class="countdown-div">
+                        <ul class="countdown-style">
+                            <li>
+                                <h5 id="days">00</h5>
+                                <p>Days</p>
+                            </li>
+                            <li>:</li>
+                            <li>
+                                <h5 id="hours">00</h5>
+                                <p>Hours</p>
+                            </li>
+                            <li>:</li>
+                            <li>
+                                <h5 id="minutes">00</h5>
+                                <p>Minutes</p>
+                            </li>
+                            <li>:</li>
+                            <li>
+                                <h5 id="seconds">00</h5>
+                                <p>Seconds</p>
+                            </li>
+                        </ul>
+                    </div> -->
+                    
+                </div>
+                <div id="secondCard" style="display: none;">
+                    <div class="zf-subContWrap zf-topAlign">
+                        <div class="card-heading">
+                            <button onclick="showFirstCard()" class="goBack">Go Back</button>
+                            <h2>Great, you're eligible for this offer!</h2>
+                            <p>Fill out the form to request your design consultation and receive your bonus guides</p>
+                        </div>
+                        <ul>
+                            <!---------Single Line Starts Here---------->
+                            <li class="zf-tempFrmWrapper zf-small">
+                                <!-- <label class="zf-labelName">
+                                First Name
+                                <em class="zf-important">*</em>
+                            </label> -->
+                                <div class="zf-tempContDiv">
+                                    <span> <input class="inputStyle" type="text" name="firstName" checktype="c1"
+                                            value="" maxlength="255" fieldType=1 placeholder="First Name*" required/></span>
+                                    <p id="firstName_error" class="zf-errorMessage" style="display:none;">Invalid
+                                        value
+                                    </p>
+                                </div>
+                                <div class="zf-clearBoth"></div>
+                            </li>
+                            <!---------Single Line Ends Here---------->
+                            <!---------Single Line Starts Here---------->
+                            <li class="zf-tempFrmWrapper zf-small">
+                                <!-- <label class="zf-labelName">
+                                Last Name
+                                <em class="zf-important">*</em>
+                            </label> -->
+                                <div class="zf-tempContDiv">
+                                    <span> <input class="inputStyle" type="text" name="lastName" checktype="c1"
+                                            value="" maxlength="255" fieldType=1 placeholder="Last Name*" required/></span>
+                                    <p id="lastName_error" class="zf-errorMessage" style="display:none;">Invalid
+                                        value
+                                    </p>
+                                </div>
+                                <div class="zf-clearBoth"></div>
+                            </li><!---------Single Line Ends Here---------->
+                            <!---------Phone Starts Here---------->
+                            <li class="zf-tempFrmWrapper zf-small">
+                                <!-- <label class="zf-labelName">
+                                Phone
+                                <em class="zf-important">*</em>
+                            </label> -->
+                                <div class="zf-tempContDiv zf-phonefld">
+                                    <div class="zf-phwrapper zf-phNumber">
+                                        <span> <input class="inputStyle" type="text" compname="PhoneNumber*" required
+                                                name="phoneNumber" maxlength="20" checktype="c7" value=""
+                                                phoneFormat="1" isCountryCodeEnabled=false fieldType="11" required
+                                                id="international_phoneNumber" valType="number"
+                                                phoneFormatType="1" placeholder="Phone Number*" />
+                                        </span>
+                                        <div class="zf-clearBoth"></div>
+                                    </div>
+                                    <p id="PhoneNumber_error" class="zf-errorMessage" style="display:none;">Invalid
+                                        value
+                                    </p>
+                                </div>
+                                <div class="zf-clearBoth"></div>
+                            </li><!---------Phone Ends Here---------->
+                            <!---------Email Starts Here---------->
+                            <li class="zf-tempFrmWrapper zf-small">
+                                <!-- <label class="zf-labelName">
+                                Email
+                                <em class="zf-important">*</em>
+                            </label> -->
+                                <div class="zf-tempContDiv">
+                                    <span> <input class="inputStyle" fieldType=9 type="email" maxlength="255"
+                                            name="Email" checktype="c5" value="" placeholder="Email"/></span>
+                                    <p id="Email_error" class="zf-errorMessage" style="display:none;">Invalid value</p>
+                                </div>
+                                <div class="zf-clearBoth"></div>
+                            </li><!---------Email Ends Here---------->
+                        </ul>
+                        <div  class="zf-tempFrmWrapper zf-small checkbox-style">
+                            <input type="checkbox" name="subscribe" id="subscribe" required checked>
+                            <p id="subscribe" name="subscribe">I'd like Kitchen Magic to contact me by email and text regarding my free consultation. You may unsubscribe from these communications at anytime
+                            </p>
+                        </div>
+                    </div><!---------template Container Starts Here---------->
+                    <ul>
+                        <li class="zf-fmFooter" id="submitBtn"><button class="zf-submitColor buttonStyle" id="l" type="submit">Request My Free Design <span id="spinner" style="display:none;"></span></button></li>
+                    </ul>
+                </div>
+            </div><!-- 'zf-templateWrapper' ends -->
+        </form>
+    </div><!-- 'zf-templateWidth' ends -->
+    <script type="text/javascript">var zf_DateRegex = new RegExp("^(([0][1-9])|([1-2][0-9])|([3][0-1]))[-](Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)[-](?:(?:19|20)[0-9]{2})$");
+        var zf_MandArray = ["zipCode"];
+        var zf_FieldArray = ["zipCode", "firstName", "lastName", "phoneNumber", "Email"];
+        var isSalesIQIntegrationEnabled = false;
+        var salesIQFieldsArray = [];</script>
+</body>
+</html>
