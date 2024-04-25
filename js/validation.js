@@ -19,6 +19,15 @@ function zf_ValidateAndSubmit() {
 }
 
 function submitForm() {
+	var phoneInput = document.forms['form']['phoneNumber'];
+	document.getElementById('PhoneNumber_error').style.display = 'none';
+
+    if (!zf_ValidatePhone(phoneInput)) {
+        document.getElementById('PhoneNumber_error').style.display = 'block';
+        document.getElementById('PhoneNumber_error').innerText = 'Please enter a valid phone number.';
+        phoneInput.focus();
+        return false;
+    }
 	if (!zf_ValidateAndSubmit()) return false;
 	var form = document.forms['form'];
     var formData = new FormData(form);
@@ -257,48 +266,16 @@ function submitForm() {
         }
         return true;
     }
-    function zf_ValidatePhone(inpElem){
-
-        var ZFPhoneRegex = {
-            PHONE_INTE_ALL_REG: /^[+]{0,1}[()0-9-. ]+$/,
-            PHONE_INTE_NUMERIC_REG: /^[0-9]+$/,
-            PHONE_INTE_CONT_CODE_ENABLED_REG: /^[(0-9-.][()0-9-. ]*$/,
-            PHONE_USA_REG: /^[0-9]+$/,
-            PHONE_CONT_CODE_REG: /^[+][0-9]{1,4}$/
-        }
-    	var phoneFormat = parseInt(inpElem.getAttribute("phoneFormat"));
-    	var fieldInpVal = inpElem.value.replace(/^\s+|\s+$/g, '');
-    	var toReturn = true ;
-    	if( phoneFormat === 1 ){
-    		if(inpElem.getAttribute("valType") == 'code'){
-                var codeRexp = ZFPhoneRegex.PHONE_CONT_CODE_REG;
-                if(fieldInpVal != "" && !codeRexp.test(fieldInpVal)){
-		           return false;
-				}
-    		}else{
-				var IRexp = ZFPhoneRegex.PHONE_INTE_ALL_REG;
-				if(inpElem.getAttribute("phoneFormatType") == '2'){
-					IRexp = ZFPhoneRegex.PHONE_INTE_NUMERIC_REG;
-				}
-	 			if (fieldInpVal != "" && !IRexp.test(fieldInpVal)) {
-	 				toReturn = false;
-	 				return toReturn;
-	 			}
- 		    }
- 			return toReturn;
-    	}else if( phoneFormat === 2 ){
-    		var InpMaxlength = inpElem.getAttribute("maxlength");
-    		var USARexp = ZFPhoneRegex.PHONE_USA_REG;
-    		if  ( fieldInpVal != "" && USARexp.test(fieldInpVal) &&  fieldInpVal.length == InpMaxlength ) {
-				toReturn = true;
-			}else if( fieldInpVal == "" ){
-				toReturn = true;
-			}else{
-				toReturn = false;
-			}
-			return toReturn;
-    	}
-    }
+	function zf_ValidatePhone(inpElem) {
+		var phoneFormat = inpElem.value.trim();
+		// Regex to validate (xxx) xxx-xxxx format
+		var validPhoneRegex = /^\(\d{3}\) \d{3}-\d{4}$/;
+		
+		if (!validPhoneRegex.test(phoneFormat)) {
+			return false;
+		}
+		return true;
+	}
 
   function zf_ValidateSignature(objElem) {
   		var linkName = objElem.getAttribute("compname");
