@@ -38,17 +38,20 @@ async function submitForm() {
     spinner.style.display = 'inline-block';
     submitButton.disabled = true;
 
-    try {
-        const response = await fetch('https://hook.us1.make.com/6fvtkcgjb6scn9q0cipoiw6lhjxww6v2', {
-            method: 'POST',
-            body: formData,
-        });
-        if (response.ok) {
-            form.reset();
-            window.location.href = 'https://www.kitchenmagic.com/thank-you/self-set';
-        } else {
-            throw new Error('Submission failed');
-        }
+	try {
+		await fetch('https://hook.us1.make.com/6fvtkcgjb6scn9q0cipoiw6lhjxww6v2', {
+		   method: 'POST',
+		   body: formData,
+	   });
+	   // if (response.ok) {
+	   setTimeout(() => {
+		   form.reset();
+		   window.location.href = 'https://www.kitchenmagic.com/thank-you/self-set';
+		   
+	   },3000)
+	   // } else {
+	   //     throw new Error('Submission failed');
+	   // }
     } catch (error) {
         alert(error.message);
     } finally {
