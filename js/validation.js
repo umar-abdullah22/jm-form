@@ -1,4 +1,3 @@
-document.getElementById('form').addEventListener('submit', submitForm);
 
 function zf_ValidateAndSubmit() {
 	var zipCode = document.forms['form']['zipCode'].value;
