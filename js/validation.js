@@ -18,9 +18,9 @@ function zf_ValidateAndSubmit() {
 		}
 }
 
-function submitForm() {
-	var phoneInput = document.forms['form']['phoneNumber'];
-	document.getElementById('PhoneNumber_error').style.display = 'none';
+async function submitForm() {
+    var phoneInput = document.forms['form']['phoneNumber'];
+    document.getElementById('PhoneNumber_error').style.display = 'none';
 
     if (!zf_ValidatePhone(phoneInput)) {
         document.getElementById('PhoneNumber_error').style.display = 'block';
@@ -28,31 +28,32 @@ function submitForm() {
         phoneInput.focus();
         return false;
     }
-	if (!zf_ValidateAndSubmit()) return false;
-	var form = document.forms['form'];
+    if (!zf_ValidateAndSubmit()) return false;
+    var form = document.forms['form'];
     var formData = new FormData(form);
     var submitButton = document.getElementById('submitBtn');
     var spinner = document.getElementById('spinner');
 
-    // Display spinner and disable the button
     spinner.style.display = 'inline-block';
     submitButton.disabled = true;
 
-    // Create an XMLHttpRequest to submit the form data
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'https://hook.us1.make.com/6fvtkcgjb6scn9q0cipoiw6lhjxww6v2', true);
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-			// On successful submission, reset form and redirect to the thank you page
-			form.reset();
+    try {
+        const response = await fetch('https://hook.us1.make.com/6fvtkcgjb6scn9q0cipoiw6lhjxww6v2', {
+            method: 'POST',
+            body: formData,
+        });
+        if (response.ok) {
+            form.reset();
             window.location.href = 'https://www.kitchenmagic.com/thank-you/self-set';
-        } else if (xhr.readyState == 4 && xhr.status != 200) {
-            alert('Submission failed, please try again.');
-            spinner.style.display = 'none';
-            submitButton.disabled = false;
+        } else {
+            throw new Error('Submission failed');
         }
-    };
-    xhr.send(formData);
+    } catch (error) {
+        alert(error.message);
+    } finally {
+        spinner.style.display = 'none';
+        submitButton.disabled = false;
+    }
 }
 
 		function zf_CheckMandatory(){
