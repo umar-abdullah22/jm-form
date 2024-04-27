@@ -5,19 +5,19 @@ function zf_ValidateAndSubmit() {
 		document.getElementById('zipCode_error').style.display = 'block';
         document.getElementById('zipCode_error').innerText = 'Please enter a valid 5-digit zip code.';
         return false;	 }
-		// if(zf_CheckMandatory()){
-		// 	if(zf_ValidCheck()){
-		// 		if(isSalesIQIntegrationEnabled){
-		// 			zf_addDataToSalesIQ();
-		// 		}
-		// 		return true;
-		// 	}else{
-		// 		return false;
-		// 	}
-		// }
-		// else {
-		// 	return false;
-		// }
+		if(zf_CheckMandatory()){
+			if(zf_ValidCheck()){
+				if(isSalesIQIntegrationEnabled){
+					zf_addDataToSalesIQ();
+				}
+				return true;
+			}else{
+				return false;
+			}
+		}
+		else {
+			return false;
+		}
 }
 
 async function submitForm() {
