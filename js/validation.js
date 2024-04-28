@@ -1,7 +1,6 @@
 
 function zf_ValidateAndSubmit() {
 	var zipCode = document.forms['form']['zipCode'].value;
-	console.log(zipCode)
 	if (zipCode.length != 5) {
 		document.getElementById('zipCode_error').style.display = 'block';
         document.getElementById('zipCode_error').innerText = 'Please enter a valid 5-digit zip code.';
@@ -35,11 +34,9 @@ async function submitForm() {
 		   body: formData,
 	   });
 	   if (response.ok) {
-	   setTimeout(() => {
 		   form.reset();
 		   window.location.href = 'https://www.kitchenmagic.com/thank-you/self-set';
 		   
-	   },3000)
 	   } else {
 	       throw new Error('Submission failed');
 	   }
