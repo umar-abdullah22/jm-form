@@ -27,10 +27,10 @@ async function submitForm() {
     var spinner = document.getElementById('spinner');
 
     spinner.style.display = 'inline-block';
-    submitButton.disabled = true;
+//     submitButton.disabled = true;
 
 	try {
-		await fetch('https://hook.us1.make.com/6fvtkcgjb6scn9q0cipoiw6lhjxww6v2', {
+		const response = await fetch('https://hook.us1.make.com/6fvtkcgjb6scn9q0cipoiw6lhjxww6v2', {
 		   method: 'POST',
 		   body: formData,
 	   });
@@ -45,9 +45,10 @@ async function submitForm() {
 	   }
     } catch (error) {
         alert(error.message);
+      console.log(error.message)
     } finally {
         spinner.style.display = 'none';
-        submitButton.disabled = false;
+//         submitButton.disabled = false;
     }
 }
 
