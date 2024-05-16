@@ -13,6 +13,8 @@ function zf_ValidateEmail(field) {
 	return emailExp.test(emailValue);
 }
 function zf_ValidateAndSubmit() {
+	document.getElementById('zipCode_error').style.display = 'none';
+
 	var zipCode = document.forms['form']['zipCode'].value;
 	console.log(zipCode)
 	if (zipCode.length != 5) {
@@ -367,6 +369,8 @@ async function submitForm() {
 
 	function showSecondCard() {
 		var zipCode = document.forms['form']['zipCode'].value;
+		document.getElementById('zipCode_error').style.display = 'none';
+
 		if (zipCode.length == 5 ) {
 			document.getElementById('firstCard').style.display = 'none';
 			document.getElementById('secondCard').style.display = 'block';
