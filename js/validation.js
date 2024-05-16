@@ -1,4 +1,17 @@
 
+function zf_ValidateName(field) {
+	var value = field.value.trim();
+	if (value.length === 0) {
+		return false;
+	}
+	return true;
+}
+
+function zf_ValidateEmail(field) {
+	var emailValue = field.value.trim();
+	var emailExp = /^[\w]([\w\-.+&'/]*)@([a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,22}$/;
+	return emailExp.test(emailValue);
+}
 function zf_ValidateAndSubmit() {
 	var zipCode = document.forms['form']['zipCode'].value;
 	console.log(zipCode)
@@ -11,15 +24,38 @@ function zf_ValidateAndSubmit() {
 }
 
 async function submitForm() {
-    var phoneInput = document.forms['form']['phoneNumber'];
+	var phoneInput = document.forms['form']['phoneNumber'];
+	var firstNameInput = document.forms['form']['firstName'];
+        var lastNameInput = document.forms['form']['lastName'];
+        var emailInput = document.forms['form']['Email'];
     document.getElementById('PhoneNumber_error').style.display = 'none';
-
+	document.getElementById('firstName_error').style.display = 'none';
+        document.getElementById('lastName_error').style.display = 'none';
+        document.getElementById('Email_error').style.display = 'none';
     if (!zf_ValidatePhone(phoneInput)) {
         document.getElementById('PhoneNumber_error').style.display = 'block';
         document.getElementById('PhoneNumber_error').innerText = 'Please enter a valid phone number.';
         phoneInput.focus();
         return false;
-    }
+	}
+	if (!zf_ValidateName(firstNameInput)) {
+		document.getElementById('firstName_error').style.display = 'block';
+		document.getElementById('firstName_error').innerText = 'Please enter a valid first name.';
+		firstNameInput.focus();
+		return false;
+	}
+	if (!zf_ValidateName(lastNameInput)) {
+		document.getElementById('lastName_error').style.display = 'block';
+		document.getElementById('lastName_error').innerText = 'Please enter a valid last name.';
+		lastNameInput.focus();
+		return false;
+	}
+	if (!zf_ValidateEmail(emailInput)) {
+		document.getElementById('Email_error').style.display = 'block';
+		document.getElementById('Email_error').innerText = 'Please enter a valid email address.';
+		emailInput.focus();
+		return false;
+	}
     if (!zf_ValidateAndSubmit()) return false;
     var form = document.forms['form'];
     var formData = new FormData(form);
