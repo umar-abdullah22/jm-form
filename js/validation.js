@@ -1,4 +1,4 @@
-
+console.log('running');
 function zf_ValidateName(field) {
 	var value = field.value.trim();
 	if (value.length === 0) {
